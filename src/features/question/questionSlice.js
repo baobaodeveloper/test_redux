@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { ACTION, REDUCER, STORE } from '../../constanst';
 
 const questionSlice = createSlice({
   name: 'question',
@@ -7,14 +8,13 @@ const questionSlice = createSlice({
   },
   reducers: {
     question: (state, action) => {
-      console.log(action.payload);
-      if (action.payload === 'Actions') {
+      if (action.payload === ACTION) {
         state.answer =
           'Actions là 1 javaScript object gồm 2 properties là type và payload báo cho redux phải làm gì tiếp theo';
-      } else if (action.payload === 'Reducer') {
+      } else if (action.payload === REDUCER) {
         state.answer =
           'Reducer là nơi nhận payload từ action,state cũ, để tính toán cập nhật state';
-      } else if (action.payload === 'Store') {
+      } else if (action.payload === STORE) {
         state.answer = 'Là nơi chứa tất cả các reducer';
       }
     },

@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { ACTION } from '../../constanst';
 import { questionAction } from './questionSlice';
 
 const all = [
-  { key: 'actions', value: 'Actions' },
+  { key: 'actions', value: 'Action' },
   { key: 'reducer', value: 'Reducer' },
   { key: 'store', value: 'Store' },
 ];
@@ -11,12 +12,16 @@ const all = [
 export const Question = () => {
   const dispatch = useDispatch();
   const { answer } = useSelector((state) => state.questionReducer);
-  const [active, setActive] = useState(true);
+  const [active, setActive] = useState(ACTION);
 
   const handleClick = (e) => {
     dispatch(questionAction.question(e.target.textContent));
     setActive(e.target.textContent);
   };
+
+  useEffect(() => {
+    dispatch(questionAction.question(ACTION));
+  }, [dispatch]);
 
   return (
     <div>
